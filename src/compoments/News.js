@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import Newsitem from "./Newsitem";
-
+ 
 export class News extends Component {
   constructor() {
     super();
-    console.log("a");
     this.state = {
       articles: [],
       loading: false,
@@ -13,12 +12,20 @@ export class News extends Component {
 
   async componentDidMount() {
     let url =
-      "https://newsapi.org/v2/everything?q=tesla&sortBy=publishedAt&apiKey=84ffd5e356f74999b5c0b5aa8f133792";
+      `https://newsapi.org/v2/everything?q=India&language=en&sortBy=publishedAt&apiKey=84ffd5e356f74999b5c0b5aa8f133792`;
     let data = await fetch(url);
     let parsed = await data.json();
-    console.log(parsed);
     this.setState({ articles: parsed.articles.slice(18, 36) });
   }
+
+  // async searchit(){
+  //  nlet url =
+  //   `https://newsapi.org/v2/everything?q=${document.getElementById("category").value}&language=en&sortBy=publishedAt&apiKey=84ffd5e356f74999b5c0b5aa8f133792`;
+  // let data = await fetch(url);
+  // let parsed = await data.json();
+  // this.setState({ articles: parsed.articles.slice(18, 36) });
+  
+  // }
 
   render() {
     return (
@@ -46,5 +53,6 @@ export class News extends Component {
     );
   }
 }
+
 
 export default News;
